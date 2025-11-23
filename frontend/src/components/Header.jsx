@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Menu } from '../icons/menu'
+
 import { useNavigate } from 'react-router-dom'
+import Menu from '../icons/Menu'
 
 const Header = () => {
   const [open, setOpen] = useState(false)
@@ -54,7 +55,7 @@ const Header = () => {
               onClick={() => setOpen(!open)} 
               className='sm:hidden p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 cursor-pointer transition-colors'
             >
-              <Menu />
+              <Menu/>
             </div>
         </div>
       </div>
