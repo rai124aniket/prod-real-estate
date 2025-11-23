@@ -28,7 +28,7 @@ const CreateProperty = () => {
       setUploading(true);
       const base64Image = await convertToBase64(data.image[0]);
       const uploadRes = await axios.post(
-        "http://localhost:3000/upload",
+        "https://prod-real-estate-backend.onrender.com/upload",
         {
           image: base64Image,
         },
@@ -39,7 +39,7 @@ const CreateProperty = () => {
       const imageUrl = uploadRes.data.url;
 
       const res = await axios.post(
-        "http://localhost:3000/property",
+        "https://prod-real-estate-backend.onrender.com/property",
         {
           ...data,
           price: parseFloat(data.price),

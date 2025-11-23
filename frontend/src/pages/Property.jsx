@@ -9,7 +9,7 @@ const Property = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.get("http://localhost:3000/property/filter", {
+      const res = await axios.get("https://prod-real-estate-backend.onrender.com/property/filter", {
         params: {
           location: data.location,
           minPrice: data.MinPrice,

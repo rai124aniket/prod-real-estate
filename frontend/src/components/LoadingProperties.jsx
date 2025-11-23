@@ -22,7 +22,7 @@ const LoadingProperties = ({ filteredProps }) => {
           data = filteredProps;
         } else {
           // Otherwise fetch from backend
-          const res = await axios.get("http://localhost:3000/property", {
+          const res = await axios.get("https://prod-real-estate-backend.onrender.com/property", {
             withCredentials: true,
           });
           
@@ -39,7 +39,7 @@ const LoadingProperties = ({ filteredProps }) => {
         setProperties(data);
 
         // Fetch favorites
-        const favRes = await axios.get("http://localhost:3000/favorite", {
+        const favRes = await axios.get("https://prod-real-estate-backend.onrender.com/favorite", {
           withCredentials: true,
         });
         

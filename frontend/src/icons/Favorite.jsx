@@ -10,7 +10,7 @@ const Favorite = ({propertyId,initialActive = false}) => {
     async function onclick(){
         try {
             if(!color){
-                const fav=await axios.post(`http://localhost:3000/favorite/${propertyId}`,
+                const fav=await axios.post(`https://prod-real-estate-backend.onrender.com/favorite/${propertyId}`,
                    {},
                 {
                     withCredentials:true
@@ -26,7 +26,7 @@ const Favorite = ({propertyId,initialActive = false}) => {
             else{
                 
                 console.log(propertyId)
-                await axios.delete(`http://localhost:3000/favorite/${propertyId}`,{
+                await axios.delete(`https://prod-real-estate-backend.onrender.com/favorite/${propertyId}`,{
                     withCredentials:true
                 })
                 setColor(false)

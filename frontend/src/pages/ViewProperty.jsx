@@ -22,13 +22,13 @@ const ViewProperty = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:3000/property/${propertyId}`,
+          `https://prod-real-estate-backend.onrender.com/property/${propertyId}`,
           {
             withCredentials: true,
           }
         );
 
-        const fav = await axios.get(`http://localhost:3000/favorite`, {
+        const fav = await axios.get(`https://prod-real-estate-backend.onrender.com/favorite`, {
           withCredentials: true,
         });
         setPropertyData(res.data);

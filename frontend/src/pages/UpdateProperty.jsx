@@ -22,7 +22,7 @@ const UpdateProperty = () => {
     const fetchProperty = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/property/${propertyId}`,
+          `https://prod-real-estate-backend.onrender.com/property/${propertyId}`,
           {
             withCredentials: true,
           }
@@ -68,7 +68,7 @@ const UpdateProperty = () => {
       if (data.image && data.image[0]) {
         const base64Image = await convertToBase64(data.image[0]);
         const uploadRes = await axios.post(
-          "http://localhost:3000/upload",
+          "https://prod-real-estate-backend.onrender.com/upload",
           { image: base64Image },
           { withCredentials: true }
         );
@@ -84,7 +84,7 @@ const UpdateProperty = () => {
       };
 
       // Send PUT request to update
-      await axios.put(`http://localhost:3000/property/${propertyId}`, payload, {
+      await axios.put(`https://prod-real-estate-backend.onrender.com/property/${propertyId}`, payload, {
         withCredentials: true,
       });
 

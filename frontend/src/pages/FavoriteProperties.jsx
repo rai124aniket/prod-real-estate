@@ -12,7 +12,7 @@ const FavoriteProperties = () => {
     useEffect(()=>{
         const data=async ()=>{
             try {
-                const res=await axios.get("http://localhost:3000/favorite",{
+                const res=await axios.get("https://prod-real-estate-backend.onrender.com/favorite",{
                     withCredentials:true
                 })
                 console.log(res.data.map((fav)=>fav.property))

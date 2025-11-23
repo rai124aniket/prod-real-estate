@@ -14,7 +14,7 @@ const ChatBox = () => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/chat/${receiverId}`, {
+        const res = await axios.get(`https://prod-real-estate-backend.onrender.com/chat/${receiverId}`, {
           withCredentials: true,
         })
         setMessages(res.data)
@@ -56,7 +56,7 @@ const ChatBox = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:3000/chat/${receiverId}`,
+        `https://prod-real-estate-backend.onrender.com/chat/${receiverId}`,
         { content: input },
         { withCredentials: true }
       );

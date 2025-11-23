@@ -11,7 +11,7 @@ const MyProperty = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/property/me", {
+        const res = await axios.get("https://prod-real-estate-backend.onrender.com/property/me", {
           withCredentials: true,
         });
         setProperties(res.data);
@@ -28,7 +28,7 @@ const MyProperty = () => {
     // Added confirmation for safety
     if (window.confirm("Are you sure you want to delete this property?")) {
       try {
-        await axios.delete(`http://localhost:3000/property/${propertyId}`, {
+        await axios.delete(`https://prod-real-estate-backend.onrender.com/property/${propertyId}`, {
           withCredentials: true,
         });
         setProperties((prev) => prev.filter((prop) => prop.id !== propertyId));

@@ -15,7 +15,7 @@ const Random = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/property/${id}`, {
+        const res = await axios.get(`https://prod-real-estate-backend.onrender.com/property/${id}`, {
           withCredentials: true,
         });
         reset(res.data); // prefill fields
@@ -44,7 +44,7 @@ const Random = () => {
       if (data.image && data.image[0]) {
         const base64Image = await convertToBase64(data.image[0]);
         const uploadRes = await axios.post(
-          "http://localhost:3000/upload",
+          "https://prod-real-estate-backend.onrender.com/upload",
           { image: base64Image },
           { withCredentials: true }
         );
@@ -52,7 +52,7 @@ const Random = () => {
       }
 
       const res = await axios.put(
-        `http://localhost:3000/property/${id}`,
+        `https://prod-real-estate-backend.onrender.com/property/${id}`,
         { ...data, price: parseFloat(data.price), imageUrl },
         { withCredentials: true }
       );

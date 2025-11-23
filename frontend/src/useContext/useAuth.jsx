@@ -10,7 +10,7 @@ export const AuthProvider=({ children })=>{
     useEffect(()=>{
         const checkAuth=async ()=>{
             try {
-                const res=await axios.get("http://localhost:3000/auth/check",{
+                const res=await axios.get("https://prod-real-estate-backend.onrender.com/auth/check",{
                     withCredentials:true
                 })
                 if(res.data.loggedIn){
@@ -30,11 +30,11 @@ export const AuthProvider=({ children })=>{
 
 
     const login=async (email,password)=>{
-        const response=await axios.post("http://localhost:3000/auth/login",
+        const response=await axios.post("https://prod-real-estate-backend.onrender.com/auth/login",
             {email,password},
             {withCredentials:true}
         )
-        const res = await axios.get("http://localhost:3000/auth/check", {
+        const res = await axios.get("https://prod-real-estate-backend.onrender.com/auth/check", {
             withCredentials: true,
           });
         if (res.data.loggedIn) setUser(res.data.user);
@@ -43,7 +43,7 @@ export const AuthProvider=({ children })=>{
 
     const signup = async (name, email, password) => {
         const res=await axios.post(
-          "http://localhost:3000/auth/register",
+          "https://prod-real-estate-backend.onrender.com/auth/register",
           { name, email, password },
           
         );
