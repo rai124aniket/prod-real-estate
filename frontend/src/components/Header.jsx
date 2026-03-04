@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-
 import { useNavigate } from 'react-router-dom'
 import Menu from '../icons/Menu'
+
 const Header = () => {
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
@@ -11,7 +11,6 @@ const Header = () => {
   const mobileLinkStyles = "cursor-pointer text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg font-medium transition-all"
 
   return (
-    // Changed to sticky so it stays at top while scrolling, added backdrop blur
     <header className='sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm'>
       
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -22,7 +21,6 @@ const Header = () => {
               onClick={() => navigate("/")} 
               className='flex items-center cursor-pointer group'
             >
-              {/* Added a slight hover effect to the logo */}
               <span className='font-bold text-2xl tracking-tight text-blue-600 group-hover:text-blue-700 transition-colors'>
                 RealState
               </span>
@@ -34,6 +32,7 @@ const Header = () => {
                 <div onClick={() => navigate("/createProperty")} className={navLinkStyles}>Sell</div>
                 <div onClick={() => navigate("/myproperty")} className={navLinkStyles}>My Property</div>
                 <div onClick={() => navigate("/favorite")} className={navLinkStyles}>Favorites</div>
+                <div onClick={() => navigate("/chat/1")} className={navLinkStyles}>Messages</div>
                 
                 {/* Divider for Auth actions */}
                 <div className="h-6 w-px bg-gray-200 mx-2"></div>
@@ -60,7 +59,6 @@ const Header = () => {
       </div>
 
       {/* Mobile Dropdown Menu */}
-      {/* Added animation logic and better positioning */}
       {open && (
         <div className="absolute top-16 left-0 w-full bg-white shadow-lg border-b border-gray-100 sm:hidden flex flex-col py-2 animate-fade-in-down">
           <div className='flex flex-col px-4 gap-1 pb-4'>
@@ -68,6 +66,7 @@ const Header = () => {
             <div onClick={() => { navigate("/createProperty"); setOpen(false); }} className={mobileLinkStyles}>Sell Property</div>
             <div onClick={() => { navigate("/myproperty"); setOpen(false); }} className={mobileLinkStyles}>My Property</div>
             <div onClick={() => { navigate("/favorite"); setOpen(false); }} className={mobileLinkStyles}>Favorites</div>
+            <div onClick={() => { navigate("/messages"); setOpen(false); }} className={mobileLinkStyles}>Messages</div>
             
             <div className="h-px w-full bg-gray-100 my-2"></div>
             

@@ -14,6 +14,7 @@ import ViewProperty from './pages/ViewProperty'
 import MyProperty from './pages/MyProperty'
 import UpdateProperty from './pages/UpdateProperty'
 import ChatBox from './pages/ChatBox'
+import Messages from './pages/Messages'
 const App = () => {
   return (
     <div>
@@ -49,6 +50,11 @@ const App = () => {
                 //</ProtectedRoute>
               } />
             </Route>
+            <Route path='/messages' element={
+              <ProtectedRoute>
+                <Messages/>
+              </ProtectedRoute>
+            } />
             <Route path='*' element={<NotFound/>} />
           </Routes>
         </BrowserRouter>

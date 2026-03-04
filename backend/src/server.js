@@ -9,7 +9,7 @@ import chatRoutes from "./routes/chat.route.js";
 dotenv.config();
 
 const server = http.createServer(app);
-const port=process.env.PORT || 3000;
+const port=process.env.PORT ;
 const wss = new WebSocketServer({ server });
 const clients = new Map();
 

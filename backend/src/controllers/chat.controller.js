@@ -1,6 +1,5 @@
 import prisma from "../prismaClient.js";
 
-
 export const sendMessage = async (req, res) => {
   try {
     const { receiverId } = req.params;
@@ -20,7 +19,6 @@ export const sendMessage = async (req, res) => {
   }
 };
 
-
 export const getChats = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -38,5 +36,32 @@ export const getChats = async (req, res) => {
     res.json(messages);
   } catch (err) {
     res.status(500).json({ error: "Failed to get chats" });
+  }
+};
+
+export const getConversations = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const messages = await prisma.message.findMany({
+      where: {
+        OR: [
+          { senderId: userId },
+          { receiverId: userId }
+        ]
+      },
+      orderBy: { createdAt: "desc" }
+    });
+
+    const users = new Set();
+
+    messages.forEach(msg => {
+      if (msg.senderId !== userId) users.add(msg.senderId);
+      if (msg.receiverId !== userId) users.add(msg.receiverId);
+    });
+
+    res.json(Array.from(users));
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch conversations" });
   }
 };

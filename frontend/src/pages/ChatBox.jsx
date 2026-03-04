@@ -30,7 +30,7 @@ const ChatBox = () => {
   useEffect(() => {
     if (!user) return
 
-    ws.current = new WebSocket("ws://localhost:3000")
+    ws.current = new WebSocket("wss://prod-real-estate-backend.onrender.com")
 
     ws.current.onopen = () => {
       ws.current.send(JSON.stringify({ type: "register", userId: user.id }))
