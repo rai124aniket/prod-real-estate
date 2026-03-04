@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model User{
+  id          Int         @id    @default(autoincrement())
+  name        String    
+  email       String      @unique
+  password    String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  property    Property[]
+  favorites   Favorite[]
+  sentMessages   Message[]  @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
+}
+
+
+
+model Property {
+  id        Int      @id @default(autoincrement())
+  title     String  
+  description String  
+  price     Float
+  location  String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ownerId   Int
+  owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)  
+  favorites Favorite[]
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+  userId    Int 
+  propertyId Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)   
+  property  Property @relation(fields: [propertyId], references: [id], onDelete: Cascade) 
+  @@unique([userId, propertyId])
+}
+
+model Message {
+  id          Int       @id @default(autoincrement())
+  content     String
+  createdAt   DateTime  @default(now())
+  senderId    Int
+  receiverId  Int 
+  sender      User     @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)    
+  receiver    User     @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade) 
+}
+
+  // these naming like sent msg and receive msg isiliye likha hai bcoz prisma ko smjh aaye that this both are different.. since dono hi User model se le ke aa rhe hai 
